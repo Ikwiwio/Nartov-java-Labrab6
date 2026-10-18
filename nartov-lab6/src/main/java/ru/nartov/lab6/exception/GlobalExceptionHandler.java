@@ -1,0 +1,7 @@
+package ru.nartov.lab6.exception;
+import org.springframework.dao.DataIntegrityViolationException;import org.springframework.http.*;import org.springframework.web.bind.MethodArgumentNotValidException;import org.springframework.web.bind.annotation.*;import ru.nartov.lab6.dto.ApiResponse;import java.util.stream.Collectors;
+@RestControllerAdvice public class GlobalExceptionHandler{
+ @ExceptionHandler(ResourceNotFoundException.class) public ResponseEntity<ApiResponse<Void>> notFound(ResourceNotFoundException e){return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.failure(e.getMessage()));}
+ @ExceptionHandler(MethodArgumentNotValidException.class) public ResponseEntity<ApiResponse<Void>> invalid(MethodArgumentNotValidException e){String m=e.getBindingResult().getFieldErrors().stream().map(x->x.getField()+": "+x.getDefaultMessage()).distinct().collect(Collectors.joining("; "));return ResponseEntity.badRequest().body(ApiResponse.failure("Ошибка валидации: "+m));}
+ @ExceptionHandler(DataIntegrityViolationException.class) public ResponseEntity<ApiResponse<Void>> conflict(DataIntegrityViolationException e){return ResponseEntity.status(HttpStatus.CONFLICT).body(ApiResponse.failure("Нарушено ограничение БД: возможно, такая дисциплина уже существует."));}
+ @ExceptionHandler(Exception.class) public ResponseEntity<ApiResponse<Void>> unknown(Exception e){return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApiResponse.failure("Внутренняя ошибка сервера."));}}

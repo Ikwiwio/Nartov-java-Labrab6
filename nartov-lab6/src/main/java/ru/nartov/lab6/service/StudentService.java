@@ -1,0 +1,1 @@
+package ru.nartov.lab6.service;import ru.nartov.lab6.dto.StudentRequest;import ru.nartov.lab6.entity.Student;import java.util.List;public interface StudentService{List<Student> findAll();Student findById(Long id);Student create(StudentRequest r);Student update(Long id,StudentRequest r);void delete(Long id);}

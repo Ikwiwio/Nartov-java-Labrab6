@@ -1,0 +1,1 @@
+package ru.nartov.lab6.service;import ru.nartov.lab6.dto.SubjectRequest;import ru.nartov.lab6.entity.Subject;import java.util.List;public interface SubjectService{List<Subject> findAll();Subject findById(Long id);Subject create(SubjectRequest r);Subject update(Long id,SubjectRequest r);void delete(Long id);}

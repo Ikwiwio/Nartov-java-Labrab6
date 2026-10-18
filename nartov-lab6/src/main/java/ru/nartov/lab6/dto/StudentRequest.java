@@ -1,0 +1,3 @@
+package ru.nartov.lab6.dto;
+import jakarta.validation.constraints.*;
+public class StudentRequest {@NotBlank @Size(max=15) private String name;@NotBlank @Size(max=25) private String surname;@NotBlank @Size(max=20) private String faculty;@NotNull @Min(16) @Max(120) private Integer age;public StudentRequest(){}public String getName(){return name;}public void setName(String v){name=v;}public String getSurname(){return surname;}public void setSurname(String v){surname=v;}public String getFaculty(){return faculty;}public void setFaculty(String v){faculty=v;}public Integer getAge(){return age;}public void setAge(Integer v){age=v;}}

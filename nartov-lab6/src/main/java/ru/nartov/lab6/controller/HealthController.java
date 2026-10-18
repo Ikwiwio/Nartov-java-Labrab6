@@ -1,0 +1,1 @@
+package ru.nartov.lab6.controller;import org.springframework.web.bind.annotation.*;@RestController public class HealthController{@GetMapping("/api/health")public String health(){return "nartov-lab6 is running";}}
